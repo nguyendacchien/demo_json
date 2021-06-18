@@ -22,8 +22,8 @@ class Data
     public static function convertUser($data)
     {
         $users = [];
-        foreach ($data as $item) {
-            $user = new User($item->name, $item->pass);
+        foreach ($data as $sum) {
+            $user = new User($sum->name, $sum->pass);
             array_push($users, $user);
         }
         return $users;

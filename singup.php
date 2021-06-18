@@ -21,14 +21,14 @@ include "Data.php";
 include "User.php";
 
 
-if (isset($_POST['singup'])){
-    $name=$_REQUEST['name'];
+if (isset($_POST['singup'])) {
+    $name = $_REQUEST['name'];
     $pass = $_REQUEST['pass'];
 
-    if (empty($name)||empty($pass)){
+    if (empty($name) || empty($pass)) {
         echo '<b>incomplete information</b>';
-    }else{
-        $user = new User($name,$pass);
+    } else {
+        $user = new User($name, $pass);
         Data::addUser($user);
         header('location: index.php');
     }
