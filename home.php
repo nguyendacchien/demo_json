@@ -35,7 +35,7 @@
     <button name="logOut">LogOut</button>
 </form>
 <form method="post">
-    <input type="text" name="sort" placeholder="sort">
+    <input type="text" name="sort" placeholder="địa chỉ">
     <input type="text" name="name" placeholder="name">
     <input type="text" name="age" placeholder="age">
     <button type="submit" name="add">Add</button>
@@ -69,6 +69,7 @@ $lists = json_decode($listsJson);
     <thead>
     <tr>
         <th>STT</th>
+        <th>địa chỉ</th>
         <th>Tên</th>
         <th>Tuổi</th>
         <th>Edit</th>
@@ -79,28 +80,31 @@ $lists = json_decode($listsJson);
     </thead>
     <tbody>
     <?php
-    foreach ($lists as $key=>$customer):?>
+    foreach ($lists as $key => $customer):?>
         <form method="post">
-        <tr>
-        <td><?php echo $key+1?></td>
-        <td><?php echo $customer->sort?></td>
-        <td><?php echo $customer->name?></td>
-        <td><?php echo $customer->age?></td>
-        <td><button id='edit'>edit</button></td>
-        <td><button name='delete' id='delete'>delete</button></td>
-        </tr>
+            <tr>
+                <td><?php echo $key + 1 ?></td>
+                <td><?php echo $customer->sort ?></td>
+                <td><?php echo $customer->name ?></td>
+                <td><?php echo $customer->age ?></td>
+                <td>
+                    <button id='edit'>edit</button>
+                </td>
+                <td><a href="home.php?id=<?php echo $key ?>">delete</td>
+            </tr>
         </form>
-    <?php endforeach;?>
+    <?php endforeach; ?>
     </tbody>
 </table>
 
 </body>
 </html>
-//<?php
-    if (isset($_REQUEST['delete'])){
-        $index = $_REQUEST['delete'];
-        Lists::deleteCustomer($index);
-    }
+<?php
+if ($_SERVER["REQUEST_METHOD"]=="POST") {
+    $index = $_REQUEST['id'];
+    var_dump($index);
+    Lists::deleteCustomer($index);
+}
 
 
 session_start();
